@@ -1,18 +1,7 @@
 const http = require("http");
-const fs = require("fs");
 
-http
-  .createServer(function (req, res) {
-    // const text = fs.readFileSync("./content/big-file.txt", "utf-8");
-    // res.end(text);
-    const fileStream = fs.createReadStream("./content/big-file.txt", "utf-8");
+const server = http.createServer((req, res) => {
+  console.log("user hit the server");
+});
 
-    fileStream.on("open", () => {
-      fileStream.pipe(res);
-    });
-
-    fileStream.on("error", (error) => {
-      res.end(error);
-    });
-  })
-  .listen(5000);
+server.listen(5000);
